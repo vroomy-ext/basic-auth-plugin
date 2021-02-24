@@ -57,7 +57,6 @@ func newHandler(username, password, realm string) common.Handler {
 			return
 		}
 
-		// No access permitted, send no content
-		ctx.WriteNoContent()
+		ctx.WriteString(401, "text/plain", "Insufficient access\n")
 	}
 }

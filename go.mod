@@ -1,5 +1,5 @@
-module github.com/vroomy-ext/cors-plugin
+module github.com/vroomy-ext/basic-auth-plugin
 
-go 1.14
+go 1.15
 
 require github.com/vroomy/common v0.5.2

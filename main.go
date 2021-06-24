@@ -1,18 +1,27 @@
-package main
+package basicauth
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/vroomy/common"
+	"github.com/vroomy/plugins"
 )
 
-// Init is called when Vroomy initializes the plugin
-func Init(env map[string]string) (err error) {
-	return
+var _ plugins.Plugin = &Plugin{}
+
+func init() {
+	if err := plugins.Register("basic-auth", &Plugin{}); err != nil {
+		log.Fatalf("error loading basic-auth: %v", err)
+	}
+}
+
+type Plugin struct {
+	plugins.BasePlugin
 }
 
 // BasicAuth will provide a basic authentication layer
-func BasicAuth(args ...string) (h common.Handler, err error) {
+func (p *Plugin) BasicAuth(args ...string) (h common.Handler, err error) {
 	var (
 		username string
 		password string
